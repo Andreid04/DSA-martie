@@ -1,17 +1,24 @@
 package _01_java_Basics;
 
 public class PrintingPatterns {
-    public static void printNumberTriangle(int row){
-        int n=1;
-        for(int i = 1;i <= row;i++){
-            for(int j=1;j<=i;j++){
-            System.out.print(n);
-            n++;
+    public static void printNumberTriangle(int numberOfRows) {
+        if(numberOfRows<=0){
+        System.out.println("Numarul de randuri trebuie sa fie pozitiv");
+        return;
         }
+        int currentNumber = 1;
+        for (int row = 1; row <= numberOfRows; row++) {
+            for (int column = 1; column <= row; column++) {
+                System.out.print(currentNumber + " ");
+                currentNumber++;
+            }
             System.out.println();
         }
     }
+
     public static void main(String[] args) {
-        PrintingPatterns.printNumberTriangle(5);
+        printNumberTriangle(-13);
+        printNumberTriangle(6);
+        printNumberTriangle(5);
     }
 }
