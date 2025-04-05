@@ -1,62 +1,63 @@
 package _01_java_Basics;
 
+import java.util.List;
+
 public class LinkedList {
 
     class Node {
         int data;
         Node next;
 
-        public Node(int data){
-            this.data=data;
-            this.next=null;
+        public Node(int data) {
+            this.data = data;
+            this.next = null;
         }
-    } 
+    }
 
     public Node head;
 
     public void add(int data) {
         Node newNode = new Node(data);
-        if(head == null){
+        if (head == null) {
             head = newNode;
 
-        }else{
+        } else {
             Node currentNode = head;
-            while(currentNode.next!= null)
-            {
+            while (currentNode.next != null) {
                 currentNode = currentNode.next;
             }
             currentNode.next = newNode;
         }
     }
 
-    public void delete(int data){
-        if(head==null)
-        return;
-        if(head.data==data){
-            head=head.next;
+    public void delete(int data) {
+        if (head == null)
+            return;
+        if (head.data == data) {
+            head = head.next;
         }
 
-        Node currentNode=head;
-        while(currentNode.next!=null){
-            if(currentNode.next.data==data){
-                currentNode.next=currentNode.next.next;
+        Node currentNode = head;
+        while (currentNode.next != null) {
+            if (currentNode.next.data == data) {
+                currentNode.next = currentNode.next.next;
             }
             currentNode = currentNode.next;
         }
 
     }
 
-    public void display(){
-        Node currentNode=head;
-        while(currentNode!=null){
-          System.out.print(currentNode.data + " -> ");
-          currentNode=currentNode.next;
+    public void display() {
+        Node currentNode = head;
+        while (currentNode != null) {
+            System.out.print(currentNode.data + " -> ");
+            currentNode = currentNode.next;
         }
         System.out.println("null");
     }
 
-    public void findMiddle(){
-        if(head==null){
+    public void findMiddle() {
+        if (head == null) {
             System.out.println("the list is empty");
             return;
         }
@@ -64,36 +65,57 @@ public class LinkedList {
         Node slow = head;
         Node fast = head;
 
-        while(fast!=null && fast.next!= null){
-            slow=slow.next;
-            fast=fast.next.next;
+        while (fast != null && fast.next != null) {
+            slow = slow.next;
+            fast = fast.next.next;
         }
 
         System.out.println("middle is: " + slow.data);
     }
 
     public boolean hasCycle(){
+        // to do
+        //if(head==null)
         return true;
     }
 
-    public void createCycle(){
+    public void createCycle() {
         Node currentNode = head;
-            while(currentNode.next!= null)
-            {
-                currentNode = currentNode.next;
-            }
-            currentNode.next = head.next;
+        while (currentNode.next != null) {
+            currentNode = currentNode.next;
+        }
+        currentNode.next = head.next;
+    }
+
+    public void reverseLinkedList(){
+        Node prev=null;
+        Node currenNode= head;
+
+        while(currenNode!=null){
+            Node nextNode = currenNode.next;
+            currenNode.next = prev;
+            prev = currenNode;
+            currenNode = nextNode;
+        }
+
+        head = prev;
     }
 
     public static void main(String[] args) {
-        LinkedList l =new LinkedList();
+        LinkedList l = new LinkedList();
+        l.add(1);
         l.add(2);
-        l.add(10);
-        l.add(20);
-        l.add(15);
-        //l.delete(20);
+        l.add(3);
+        l.add(4);
+        l.add(5);
+        l.add(6);
+        l.add(7);
+        //l.createCycle();
 
         l.display();
         l.findMiddle();
+
+        l.reverseLinkedList();
+        l.display();
     }
 }
